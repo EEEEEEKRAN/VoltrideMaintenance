@@ -1,0 +1,69 @@
+# Dépendances
+**/node_modules/
+
+# Fichiers de configuration sensibles
+**/.env
+docker-compose.yml
+docker-compose.*.yml
+
+# Fichiers de build
+**/dist/
+**/build/
+
+# Fichiers de logs
+**/logs/
+**/*.log
+**/npm-debug.log*
+
+# Fichiers d'IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Fichiers système
+.DS_Store
+Thumbs.db
+
+# Fichiers TypeScript
+**/*.tsbuildinfo
+
+# Cache
+.cache/
+.temp/
+.tmp/
+
+# Environment
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Tests
+coverage/
+
+# Nest.js
+dist/
+build/
+
+# Docker
+docker-volumes/
+*.env 
