@@ -7,12 +7,20 @@ import { GetUserUseCase } from '../application/uses-cases/get-user.use-case';
 import { GetAllUsersUseCase } from '../application/uses-cases/get-all-users.use-case';
 import { UpdateUserUseCase } from '../application/uses-cases/update-user.use-case';
 import { DeleteUserUseCase } from '../application/uses-cases/delete-user.use-case';
+import { LoginUserUseCase } from '../application/uses-cases/login-user.use-case';
 import { UsersService } from '../users/users.service';
 import { UserRepository } from '../infrastructure/repositories/user.repository';
 import { Utilisateur } from '../domain/entities/user.entity';
+import { JwtModule } from '@nestjs/jwt';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Utilisateur])],
+  imports: [
+    TypeOrmModule.forFeature([Utilisateur]),
+    JwtModule.register({
+      secret: '260e9476d3c1f7ce7dbf2d0d7591021aabf07a44dfa1bbaf9fcc0ffc2d703d38',
+      signOptions: { expiresIn: '1h' },
+    }),
+  ],
   controllers: [UsersController, AuthController],
   providers: [
     CreateUserUseCase,
@@ -20,11 +28,19 @@ import { Utilisateur } from '../domain/entities/user.entity';
     GetAllUsersUseCase,
     UpdateUserUseCase,
     DeleteUserUseCase,
+    LoginUserUseCase,
     UsersService,
     {
       provide: 'IUserRepository',
       useClass: UserRepository,
     },
+  ],
+  exports: [
+    {
+      provide: 'IUserRepository',
+      useClass: UserRepository,
+    },
+    JwtModule,
   ],
 })
 export class UsersModule {}
