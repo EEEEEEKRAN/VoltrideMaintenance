@@ -4,6 +4,8 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { theme } from './assets/styles/theme';
 import { Accueil } from './pages/Accueil';
+import RegisterPage from './pages/RegisterPage';
+import SuccessPage from './pages/SuccessPage';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -22,6 +24,8 @@ function App() {
         <Router>
           <Routes>
             <Route path="/" element={<Accueil />} />
+            <Route path="/register" element={<RegisterPage />} />
+            <Route path="/success" element={<SuccessPage />} /> 
           </Routes>
         </Router>
       </ThemeProvider>
