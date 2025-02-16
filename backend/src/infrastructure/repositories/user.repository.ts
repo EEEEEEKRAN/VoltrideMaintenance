@@ -1,34 +1,49 @@
 import { Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 import { IUserRepository } from '../../domain/repositories/iuser.repository';
 import { Utilisateur } from '../../domain/entities/user.entity';
 
 @Injectable()
 export class UserRepository implements IUserRepository {
-  private users: Utilisateur[] = [];
-  private currentId: number = 1;
+  constructor(
+    @InjectRepository(Utilisateur)
+    private readonly utilisateurRepository: Repository<Utilisateur>,
+  ) {}
 
   async save(user: Utilisateur): Promise<Utilisateur> {
-    user.id = this.currentId++;
-    this.users.push(user);
-    return user;
+    return this.utilisateurRepository.save(user);
   }
+
   async findById(id: number): Promise<Utilisateur | null> {
-    return this.users.find(user => user.id === id) || null;
+    return this.utilisateurRepository.findOneBy({ id }) || null;
   }
+
   async findAll(): Promise<Utilisateur[]> {
-    return this.users;
+    return this.utilisateurRepository.find();
   }
-
-
   async update(user: Utilisateur): Promise<Utilisateur> {
-    const index = this.users.findIndex(u => u.id === user.id);
-    if (index !== -1) {
-      this.users[index] = user;
+    if (user.id === undefined) {
+      throw new Error("User ID is not defined. Cannot update user.");
     }
-    return user;
+  
+    const existingUser = await this.findById(user.id);
+    if (!existingUser) {
+      throw new Error("User not found");
+    }
+  
+    await this.utilisateurRepository.update(user.id, user);
+  
+    const updatedUser = await this.findById(user.id);
+    if (!updatedUser) {
+      throw new Error("Failed to update user");
+    }
+  
+    return updatedUser;
   }
+  
 
   async delete(id: number): Promise<void> {
-    this.users = this.users.filter(user => user.id !== id);
+    await this.utilisateurRepository.delete(id);
   }
 }

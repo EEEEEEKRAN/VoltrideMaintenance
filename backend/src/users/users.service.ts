@@ -1,6 +1,8 @@
 import { Injectable, Inject } from '@nestjs/common';
 import { Utilisateur } from '../domain/entities/user.entity';
 import { IUserRepository } from '../domain/repositories/iuser.repository';
+import * as bcrypt from 'bcrypt';
+import { RegisterUserDto } from '../interface/dto/register-user.dto';
 
 @Injectable()
 export class UsersService {
@@ -8,6 +10,22 @@ export class UsersService {
     @Inject('IUserRepository') private readonly userRepository: IUserRepository,
   ) {}
 
+  async register(registerUserDto: RegisterUserDto): Promise<Utilisateur> {
+    const { password, ...userData } = registerUserDto;
+
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    
+    const user = new Utilisateur(
+      userData.nom,
+      userData.email,
+      userData.telephone,
+      userData.numero_permis,
+      hashedPassword, 
+    );
+
+    return this.userRepository.save(user);
+  }
   async create(user: Utilisateur) {
     return this.userRepository.save(user);
   }
@@ -27,5 +45,4 @@ export class UsersService {
   async remove(id: number): Promise<void> {
     return this.userRepository.delete(id);
   }
-
 }
