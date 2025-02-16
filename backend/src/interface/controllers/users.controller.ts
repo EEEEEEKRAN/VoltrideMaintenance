@@ -33,7 +33,7 @@ export class UsersController {
 
   @Put(':id')
   async update(@Param('id') id: string, @Body() user: Utilisateur) {
-    user.id = +id; // Assurez-vous que l'ID est correctement défini
+    user.id = +id;
     return this.updateUserUseCase.execute(user);
   }
 
