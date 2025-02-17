@@ -7,6 +7,7 @@ import { Accueil } from './pages/Accueil';
 import RegisterPage from './pages/RegisterPage';
 import SuccessPage from './pages/SuccessPage';
 import LoginPage from './pages/LoginPage';
+import UserProfilePage from './pages/UserProfilePage';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -28,6 +29,7 @@ function App() {
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/success" element={<SuccessPage />} /> 
             <Route path="/login" element={<LoginPage />} /> 
+            <Route path="/profile/:id" element={<UserProfilePage />} />
           </Routes>
         </Router>
       </ThemeProvider>

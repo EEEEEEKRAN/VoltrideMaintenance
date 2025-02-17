@@ -22,3 +22,22 @@ export const loginUser = async (email: string, password: string) => {
     throw new Error(`Erreur lors de la connexion de l'utilisateur: ${error.message}`);
   }
 };
+
+export const handleLogin = async (email: string, password: string, navigate: (path: string) => void) => {
+  try {
+    const response = await loginUser(email, password);
+
+ 
+    if (response.id) {
+      const userId = response.id;
+      localStorage.setItem('id', userId.toString()); 
+      console.log("User ID stored in localStorage:", userId); 
+      navigate('/'); 
+    } else {
+      throw new Error("Invalid response format: missing or invalid user ID.");
+    }
+  } catch (error) {
+    console.error("Erreur lors de la connexion:", error);
+  
+  }
+};
