@@ -1,8 +1,17 @@
-import React from 'react';
-import LoginForm from '../components/LoginForm';
-import { Box, Typography, Paper } from '@mui/material';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { handleLogin } from '../services/authService';
+import { Box, Paper, Typography, TextField, Button } from '@mui/material';
 
 const LoginPage: React.FC = () => {
+  const [credentials, setCredentials] = useState({ email: '', password: '' });
+  const navigate = useNavigate();
+
+  const handleSubmit = async (event: React.FormEvent) => {
+    event.preventDefault();
+    await handleLogin(credentials.email, credentials.password, navigate);
+  };
+
   return (
     <Box
       sx={{
@@ -37,7 +46,35 @@ const LoginPage: React.FC = () => {
         >
           Connexion
         </Typography>
-        <LoginForm />
+        <form onSubmit={handleSubmit}>
+          <TextField
+            fullWidth
+            margin="normal"
+            type="email"
+            label="Email"
+            value={credentials.email}
+            onChange={(e) => setCredentials({ ...credentials, email: e.target.value })}
+            variant="outlined"
+          />
+          <TextField
+            fullWidth
+            margin="normal"
+            type="password"
+            label="Mot de passe"
+            value={credentials.password}
+            onChange={(e) => setCredentials({ ...credentials, password: e.target.value })}
+            variant="outlined"
+          />
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            color="primary"
+            sx={{ mt: 3 }}
+          >
+            Se connecter
+          </Button>
+        </form>
       </Paper>
     </Box>
   );
