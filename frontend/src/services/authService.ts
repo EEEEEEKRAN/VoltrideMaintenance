@@ -27,17 +27,22 @@ export const handleLogin = async (email: string, password: string, navigate: (pa
   try {
     const response = await loginUser(email, password);
 
- 
     if (response.id) {
       const userId = response.id;
-      localStorage.setItem('id', userId.toString()); 
-      console.log("User ID stored in localStorage:", userId); 
-      navigate('/'); 
+      localStorage.setItem('id', userId.toString());
+      localStorage.setItem('token', response.accessToken);
+      console.log("User ID stored in localStorage:", userId);
+      navigate('/');
     } else {
       throw new Error("Invalid response format: missing or invalid user ID.");
     }
   } catch (error) {
     console.error("Erreur lors de la connexion:", error);
-  
   }
+};
+
+export const handleLogout = () => {
+  localStorage.removeItem('token');
+  localStorage.removeItem('id');
+  console.log("User logged out and tokens removed from localStorage.");
 };

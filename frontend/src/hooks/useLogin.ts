@@ -3,16 +3,18 @@ import { loginUser } from '../services/authService';
 import { AxiosError } from 'axios';
 
 export const useLogin = () => {
-  const [error, setError] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const login = async (email: string, password: string) => {
     setIsLoading(true);
     try {
       const user = await loginUser(email, password);
-      if (user) {
+      if (user && user.accessToken) {
         localStorage.setItem('token', user.accessToken);
-        return true; 
+        console.log('Token stored:', user.accessToken); 
+        window.location.reload(); 
+        return true;
       } else {
         setError('Email ou mot de passe incorrect');
         return false;
@@ -23,7 +25,7 @@ export const useLogin = () => {
       } else {
         setError('Une erreur inattendue s\'est produite');
       }
-      return false; 
+      return false;
     } finally {
       setIsLoading(false);
     }

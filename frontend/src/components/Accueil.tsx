@@ -1,5 +1,7 @@
+import React from 'react';
 import { Box, Typography, Paper } from '@mui/material';
 import { keyframes } from '@mui/system';
+
 
 const fadeIn = keyframes`
   from {
@@ -12,11 +14,11 @@ const fadeIn = keyframes`
   }
 `;
 
-export const Accueil = () => {
+const Accueil: React.FC = () => {
   return (
     <Box
       sx={{
-        height: '100vh',
+        height: 'calc(100vh - 64px)',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
@@ -44,9 +46,11 @@ export const Accueil = () => {
             textShadow: '2px 2px 4px rgba(0, 0, 0, 0.1)',
           }}
         >
-          Salut JackSam et Arthur :3
+          Bienvenue sur notre application !
         </Typography>
       </Paper>
     </Box>
   );
-}; 
+};
+
+export default Accueil;

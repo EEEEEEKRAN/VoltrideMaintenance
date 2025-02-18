@@ -3,11 +3,12 @@ import { CssBaseline } from '@mui/material';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { theme } from './assets/styles/theme';
-import { Accueil } from './pages/Accueil';
+import HomePage from './pages/HomePage';
 import RegisterPage from './pages/RegisterPage';
 import SuccessPage from './pages/SuccessPage';
 import LoginPage from './pages/LoginPage';
 import UserProfilePage from './pages/UserProfilePage';
+import Header from './components/Header'; 
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -24,11 +25,12 @@ function App() {
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <Router>
+          <Header /> 
           <Routes>
-            <Route path="/" element={<Accueil />} />
+            <Route path="/" element={<HomePage />} />
             <Route path="/register" element={<RegisterPage />} />
-            <Route path="/success" element={<SuccessPage />} /> 
-            <Route path="/login" element={<LoginPage />} /> 
+            <Route path="/success" element={<SuccessPage />} />
+            <Route path="/login" element={<LoginPage />} />
             <Route path="/profile/:id" element={<UserProfilePage />} />
           </Routes>
         </Router>
