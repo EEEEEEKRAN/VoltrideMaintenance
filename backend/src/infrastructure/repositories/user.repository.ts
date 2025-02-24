@@ -28,24 +28,19 @@ export class UserRepository implements IUserRepository {
   }
   async update(user: Utilisateur): Promise<Utilisateur> {
     if (user.id === undefined) {
-      throw new Error("User ID is not defined. Cannot update user.");
+      throw new Error('User ID is not defined. Cannot update user.');
     }
-  
     const existingUser = await this.findById(user.id);
     if (!existingUser) {
-      throw new Error("User not found");
+      throw new Error('User not found');
     }
-  
     await this.utilisateurRepository.update(user.id, user);
-  
     const updatedUser = await this.findById(user.id);
     if (!updatedUser) {
-      throw new Error("Failed to update user");
+      throw new Error('Failed to update user');
     }
-  
     return updatedUser;
   }
-  
 
   async delete(id: number): Promise<void> {
     await this.utilisateurRepository.delete(id);
