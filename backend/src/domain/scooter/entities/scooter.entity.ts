@@ -7,6 +7,7 @@ import {
 } from 'typeorm';
 import { ModeleScooter } from '../../../domain/modele-scooter/entities/modele-scooter.entity';
 import { Maintenance } from '../../maintenance/entities/maintenance.entity';
+import { Reservation } from '../../reservation/entities/reservation.entity';
 
 export enum ScooterStatut {
   DISPONIBLE = 'DISPONIBLE',
@@ -69,6 +70,9 @@ export class Scooter {
 
   @OneToMany('Maintenance', 'scooter')
   maintenances: Maintenance[];
+
+  @OneToMany(() => Reservation, reservation => reservation.scooter)
+  reservations: Reservation[];
 
   constructor(numeroSerie: string, modeleScooter: ModeleScooter) {
     this.numeroSerie = numeroSerie;

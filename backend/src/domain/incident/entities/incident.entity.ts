@@ -1,6 +1,6 @@
 // src/domain/entities/incident.entity.ts
 import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn } from 'typeorm';
-import { Reservation } from '../reservation/entities/reservation.entity';
+import { Reservation } from '../../reservation/entities/reservation.entity';
 
 @Entity()
 export class Incident {
