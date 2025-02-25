@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Inject } from '@nestjs/common';
 import { Scooter, ScooterStatut } from '../entities/scooter.entity';
 import { IScooterRepository } from '../repositories/scooter.repository.interface';
 import { ModeleScooter } from '../../modele-scooter/entities/modele-scooter.entity';
@@ -6,7 +6,10 @@ import { UpdateScooterDto } from '../dtos/update-scooter.dto';
 
 @Injectable()
 export class GestionScooterUseCase {
-  constructor(private readonly scooterRepository: IScooterRepository) {}
+  constructor(
+    @Inject('IScooterRepository')
+    private readonly scooterRepository: IScooterRepository
+  ) {}
 
   async creerScooter(
     numeroSerie: string,

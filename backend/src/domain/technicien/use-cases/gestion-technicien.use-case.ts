@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Inject } from '@nestjs/common';
 import { Technicien, TechnicienStatut } from '../entities/technicien.entity';
 import { ITechnicienRepository } from '../repositories/technicien.repository.interface';
 import { CreateTechnicienDto } from '../dtos/create-technicien.dto';
@@ -6,7 +6,10 @@ import { UpdateTechnicienDto } from '../dtos/update-technicien.dto';
 
 @Injectable()
 export class GestionTechnicienUseCase {
-  constructor(private readonly technicienRepository: ITechnicienRepository) {}
+  constructor(
+    @Inject('ITechnicienRepository')
+    private readonly technicienRepository: ITechnicienRepository
+  ) {}
 
   async creerTechnicien(
     createTechnicienDto: CreateTechnicienDto,

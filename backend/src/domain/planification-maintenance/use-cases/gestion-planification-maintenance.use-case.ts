@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Inject } from '@nestjs/common';
 import {
   PlanificationMaintenance,
   TypeMaintenance,
@@ -11,7 +11,9 @@ import { IModeleScooterRepository } from '../../modele-scooter/repositories/mode
 @Injectable()
 export class GestionPlanificationMaintenanceUseCase {
   constructor(
+    @Inject('IPlanificationMaintenanceRepository')
     private readonly planificationMaintenanceRepository: IPlanificationMaintenanceRepository,
+    @Inject('IModeleScooterRepository')
     private readonly modeleScooterRepository: IModeleScooterRepository,
   ) {}
 

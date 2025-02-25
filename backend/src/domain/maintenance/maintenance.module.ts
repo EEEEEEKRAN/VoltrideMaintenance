@@ -1,10 +1,10 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Maintenance } from '../../domain/maintenance/entities/maintenance.entity';
+import { Maintenance } from './entities/maintenance.entity';
 import { MaintenanceController } from '../../interface/controllers/maintenance.controller';
-import { GestionMaintenanceUseCase } from '../../domain/maintenance/use-cases/gestion-maintenance.use-case';
-import { MaintenanceRepository } from '../database/typeorm/repositories/maintenance.repository';
-import { ScooterModule } from '../../domain/scooter/scooter.module';
+import { GestionMaintenanceUseCase } from './use-cases/gestion-maintenance.use-case';
+import { MaintenanceRepository } from '../../infrastructure/database/typeorm/repositories/maintenance.repository';
+import { ScooterModule } from '../scooter/scooter.module';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Maintenance]), ScooterModule],
@@ -16,6 +16,6 @@ import { ScooterModule } from '../../domain/scooter/scooter.module';
       useClass: MaintenanceRepository,
     },
   ],
-  exports: [GestionMaintenanceUseCase],
+  exports: [GestionMaintenanceUseCase, 'IMaintenanceRepository'],
 })
-export class MaintenanceModule {}
+export class MaintenanceModule {} 

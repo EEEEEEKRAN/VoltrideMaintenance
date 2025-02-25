@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Inject } from '@nestjs/common';
 import { Maintenance, MaintenanceType } from '../entities/maintenance.entity';
 import { IMaintenanceRepository } from '../repositories/maintenance.repository.interface';
 import { CreateMaintenanceDto } from '../dtos/create-maintenance.dto';
@@ -8,7 +8,9 @@ import { IScooterRepository } from '../../scooter/repositories/scooter.repositor
 @Injectable()
 export class GestionMaintenanceUseCase {
   constructor(
+    @Inject('IMaintenanceRepository')
     private readonly maintenanceRepository: IMaintenanceRepository,
+    @Inject('IScooterRepository')
     private readonly scooterRepository: IScooterRepository,
   ) {}
 

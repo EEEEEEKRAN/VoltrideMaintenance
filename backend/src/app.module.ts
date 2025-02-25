@@ -9,13 +9,16 @@ import { Technicien } from './domain/technicien/entities/technicien.entity';
 import { PlanificationMaintenance } from './domain/planification-maintenance/entities/planification-maintenance.entity';
 import { Piece } from './domain/piece/entities/piece.entities';
 import { PiecesUtilisees } from './domain/pieces-utilisees/entities/pieces-utilisees.entity';
+import { Reservation } from './domain/reservation/entities/reservation.entity';
+import { Incident } from './domain/incident/entities/incident.entity';
+import { Fournisseur } from './domain/fournisseur/entities/fournisseur.entities';
 import { ScooterModule } from './domain/scooter/scooter.module';
 import { ModeleScooterModule } from './domain/modele-scooter/modele-scooter.module';
-import { MaintenanceModule } from './infrastructure/modules/maintenance.module';
+import { MaintenanceModule } from './domain/maintenance/maintenance.module';
 import { TechnicienModule } from './domain/technicien/technicien.module';
 import { PlanificationMaintenanceModule } from './domain/planification-maintenance/planification-maintenance.module';
 import { PieceModule } from './domain/piece/piece.module';
-import { PiecesUtiliseesModule } from './infrastructure/modules/pieces-utilisees.module';
+import { PiecesUtiliseesModule } from './domain/pieces-utilisees/pieces-utilisees.module';
 
 @Module({
   imports: [
@@ -35,6 +38,9 @@ import { PiecesUtiliseesModule } from './infrastructure/modules/pieces-utilisees
         PlanificationMaintenance,
         Piece,
         PiecesUtilisees,
+        Reservation,
+        Incident,
+        Fournisseur,
       ],
       synchronize: false,
     }),

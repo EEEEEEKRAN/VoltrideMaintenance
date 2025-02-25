@@ -15,6 +15,6 @@ import { ModeleScooterRepository } from '../../infrastructure/database/typeorm/r
       useClass: ModeleScooterRepository,
     },
   ],
-  exports: [GestionModeleScooterUseCase],
+  exports: [GestionModeleScooterUseCase, 'IModeleScooterRepository'],
 })
 export class ModeleScooterModule {}

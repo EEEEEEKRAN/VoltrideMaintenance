@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Inject, NotFoundException } from '@nestjs/common';
 import { ModeleScooter } from '../entities/modele-scooter.entity';
 import { IModeleScooterRepository } from '../repositories/modele-scooter.repository.interface';
 import { CreateModeleScooterDto } from '../dtos/create-modele-scooter.dto';
@@ -7,6 +7,7 @@ import { UpdateModeleScooterDto } from '../dtos/update-modele-scooter.dto';
 @Injectable()
 export class GestionModeleScooterUseCase {
   constructor(
+    @Inject('IModeleScooterRepository')
     private readonly modeleScooterRepository: IModeleScooterRepository,
   ) {}
 
@@ -35,7 +36,7 @@ export class GestionModeleScooterUseCase {
   async findById(id: number): Promise<ModeleScooter> {
     const modele = await this.modeleScooterRepository.findById(id);
     if (!modele) {
-      throw new Error('Modèle non trouvé');
+      throw new NotFoundException(`ModeleScooter avec ID ${id} non trouvé`);
     }
     return modele;
   }
@@ -82,5 +83,34 @@ export class GestionModeleScooterUseCase {
     }
 
     await this.modeleScooterRepository.delete(id);
+  }
+
+  async create(modeleScooter: Partial<ModeleScooter>): Promise<ModeleScooter> {
+    const modele = new ModeleScooter(
+      modeleScooter.nom || '',
+      modeleScooter.description || '',
+    );
+    return this.modeleScooterRepository.save(modele);
+  }
+
+  async update(
+    id: number,
+    modeleScooter: Partial<ModeleScooter>,
+  ): Promise<ModeleScooter> {
+    await this.findById(id);
+    return this.modeleScooterRepository.update(id, modeleScooter);
+  }
+
+  async delete(id: number): Promise<void> {
+    await this.findById(id);
+    return this.modeleScooterRepository.delete(id);
+  }
+
+  async findWithScooters(id: number): Promise<ModeleScooter> {
+    const modele = await this.modeleScooterRepository.findWithScooters(id);
+    if (!modele) {
+      throw new NotFoundException(`ModeleScooter avec ID ${id} non trouvé`);
+    }
+    return modele;
   }
 }

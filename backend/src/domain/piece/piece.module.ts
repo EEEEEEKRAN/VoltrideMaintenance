@@ -15,6 +15,6 @@ import { PieceRepository } from '../../infrastructure/database/typeorm/repositor
       useClass: PieceRepository,
     },
   ],
-  exports: [GestionPieceUseCase],
+  exports: [GestionPieceUseCase, 'IPieceRepository'],
 })
 export class PieceModule {}

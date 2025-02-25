@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Inject } from '@nestjs/common';
 import { PiecesUtilisees } from '../entities/pieces-utilisees.entity';
 import { IPiecesUtiliseesRepository } from '../repositories/pieces-utilisees.repository.interface';
 import { CreatePiecesUtiliseesDto } from '../dtos/create-pieces-utilisees.dto';
@@ -9,8 +9,11 @@ import { IPieceRepository } from '../../piece/repositories/piece.repository.inte
 @Injectable()
 export class GestionPiecesUtiliseesUseCase {
   constructor(
+    @Inject('IPiecesUtiliseesRepository')
     private readonly piecesUtiliseesRepository: IPiecesUtiliseesRepository,
+    @Inject('IMaintenanceRepository')
     private readonly maintenanceRepository: IMaintenanceRepository,
+    @Inject('IPieceRepository')
     private readonly pieceRepository: IPieceRepository,
   ) {}
 

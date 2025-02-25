@@ -55,8 +55,8 @@ export class Maintenance {
     this.coutMainOeuvre = coutMainOeuvre;
     this.notesTechniques = notesTechniques || null;
     this.dateDebut = new Date();
-    this.sousGarantie = scooter.estSousGarantie();
-    this.conditionsGarantie = this.sousGarantie
+    this.sousGarantie = scooter && scooter.estSousGarantie ? scooter.estSousGarantie() : false;
+    this.conditionsGarantie = this.sousGarantie && scooter && scooter.garantieType && scooter.garantieFin
       ? `Intervention sous garantie ${scooter.garantieType} valable jusqu'au ${scooter.garantieFin.toLocaleDateString()}`
       : null;
   }
