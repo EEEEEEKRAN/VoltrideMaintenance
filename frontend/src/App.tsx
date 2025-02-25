@@ -9,6 +9,9 @@ import SuccessPage from './pages/SuccessPage';
 import LoginPage from './pages/LoginPage';
 import UserProfilePage from './pages/UserProfilePage';
 import Header from './components/Header'; 
+import Dashboard from './pages/Dashboard';
+import DashboardHome from './pages/DashboardHome';
+import SettingsPage from './pages/Settings';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -25,13 +28,18 @@ function App() {
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <Router>
-          <Header /> 
+          {/* <Header />  */}
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/success" element={<SuccessPage />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/profile/:id" element={<UserProfilePage />} />
+
+            {/* Routes du Dashboard */}
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="settings" element={<SettingsPage />} />
+
           </Routes>
         </Router>
       </ThemeProvider>
