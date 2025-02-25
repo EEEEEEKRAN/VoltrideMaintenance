@@ -23,7 +23,7 @@ const Header: React.FC = () => {
           onClick={() => navigate('/')}
           style={{ cursor: 'pointer' }}
         >
-          Mon Application
+          VOLTRIDE
         </Typography>
         <Box flexGrow={1} />
         {token ? (
