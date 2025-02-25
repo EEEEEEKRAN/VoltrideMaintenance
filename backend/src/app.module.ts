@@ -20,9 +20,15 @@ import { PlanificationMaintenanceModule } from './domain/planification-maintenan
 import { PieceModule } from './domain/piece/piece.module';
 import { PiecesUtiliseesModule } from './domain/pieces-utilisees/pieces-utilisees.module';
 import { ReservationModule } from './domain/reservation/reservation.module';
+import { NotificationModule } from './infrastructure/services/notification/notification.module';
+import { ConfigModule } from '@nestjs/config';
+import { MaintenanceAlertModule } from './domain/maintenance/maintenance-alert/maintenance-alert.module';
 
 @Module({
   imports: [
+    ConfigModule.forRoot({
+      isGlobal: true,
+    }),
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: 'localhost',
@@ -53,7 +59,9 @@ import { ReservationModule } from './domain/reservation/reservation.module';
     PlanificationMaintenanceModule,
     PieceModule,
     PiecesUtiliseesModule,
-    ReservationModule
+    ReservationModule,
+    NotificationModule,
+    MaintenanceAlertModule,
   ],
 })
 export class AppModule {}

@@ -15,6 +15,9 @@ import { TechnicienRepository } from '../../infrastructure/database/typeorm/repo
       useClass: TechnicienRepository,
     },
   ],
-  exports: [GestionTechnicienUseCase],
+  exports: [
+    GestionTechnicienUseCase,
+    'ITechnicienRepository'
+  ],
 })
 export class TechnicienModule {}
