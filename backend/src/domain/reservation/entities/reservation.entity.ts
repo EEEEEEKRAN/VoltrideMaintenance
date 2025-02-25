@@ -1,8 +1,9 @@
 // src/domain/entities/reservation.entity.ts
 import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, OneToMany, JoinColumn } from 'typeorm';
-import { Utilisateur } from './user.entity';
-import { Scooter } from './scooter.entity';
-import { Incident } from '../../entities/incident.entity';
+import { Utilisateur } from '../../user/entities/user.entity';
+import { Scooter } from '../../scooter/entities/scooter.entity';
+import { Incident } from '../../incident/entities/incident.entity';
+
 
 @Entity()
 export class Reservation {
