@@ -2,7 +2,7 @@
 import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, OneToMany, JoinColumn } from 'typeorm';
 import { Utilisateur } from './user.entity';
 import { Scooter } from './scooter.entity';
-import { Incident } from './incident.entity';
+import { Incident } from '../../entities/incident.entity';
 
 @Entity()
 export class Reservation {

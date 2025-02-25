@@ -4,7 +4,7 @@ import { GetUserUseCase } from '../../application/uses-cases/get-user.use-case';
 import { GetAllUsersUseCase } from '../../application/uses-cases/get-all-users.use-case';
 import { UpdateUserUseCase } from '../../application/uses-cases/update-user.use-case';
 import { DeleteUserUseCase } from '../../application/uses-cases/delete-user.use-case';
-import { Utilisateur } from '../../domain/entities/user.entity';
+import { Utilisateur } from '../../domain/user/entities/user.entity';
 
 @Controller('users')
 export class UsersController {

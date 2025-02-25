@@ -2,7 +2,7 @@
 import { Controller, Post, Body } from '@nestjs/common';
 import { CreateReservationUseCase } from '../../application/uses-cases/create-reservation.use-case';
 import { CreateReservationDTO } from '../dto/create-reservation.dto';
-import { Reservation } from '../../domain/entities/reservation.entity';
+import { Reservation } from '../../domain/reservation/entities/reservation.entity';
 
 
 @Controller('reservations')

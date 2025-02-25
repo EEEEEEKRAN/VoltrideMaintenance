@@ -1,7 +1,7 @@
 import { Controller, Post, Body } from '@nestjs/common';
 import { CreateIncidentUseCase } from '../../application/uses-cases/create-incident.use-case';
 import { CreateIncidentDTO } from '../dto/create-incident.dto';
-import { Incident } from '../../domain/entities/incident.entity';
+import { Incident } from '../../domain/incident/entities/incident.entity';
 
 @Controller('incidents')
 export class IncidentController {

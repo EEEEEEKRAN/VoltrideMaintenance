@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UsersModule } from './users/users.module';
-import { Utilisateur } from './domain/entities/user.entity';
+import { Utilisateur } from './domain/user/entities/user.entity';
 import { Scooter } from './domain/scooter/entities/scooter.entity';
 import { ModeleScooter } from './domain/modele-scooter/entities/modele-scooter.entity';
 import { Maintenance } from './domain/maintenance/entities/maintenance.entity';
@@ -21,7 +21,7 @@ import { PiecesUtiliseesModule } from './infrastructure/modules/pieces-utilisees
   imports: [
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: 'bdd',
+      host: 'localhost',
       port: 5432,
       username: 'voltride',
       password: 'voltride',
