@@ -1,5 +1,4 @@
-// src/interface/dto/create-reservation.dto.ts
-import { IsDate, IsInt, IsString } from 'class-validator';
+import { IsDate, IsInt, IsOptional, IsString } from 'class-validator';
 
 export class CreateReservationDTO {
   @IsInt()
@@ -19,4 +18,6 @@ export class CreateReservationDTO {
 
   @IsString()
   statut: string;
+
+
 }

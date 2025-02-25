@@ -1,10 +1,4 @@
-import {
-  Entity,
-  Column,
-  PrimaryGeneratedColumn,
-  ManyToOne,
-  OneToMany,
-} from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, OneToMany } from 'typeorm';
 import { ModeleScooter } from '../../../domain/modele-scooter/entities/modele-scooter.entity';
 import { Maintenance } from '../../maintenance/entities/maintenance.entity';
 import { Reservation } from '../../reservation/entities/reservation.entity';

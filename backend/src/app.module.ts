@@ -19,6 +19,7 @@ import { TechnicienModule } from './domain/technicien/technicien.module';
 import { PlanificationMaintenanceModule } from './domain/planification-maintenance/planification-maintenance.module';
 import { PieceModule } from './domain/piece/piece.module';
 import { PiecesUtiliseesModule } from './domain/pieces-utilisees/pieces-utilisees.module';
+import { ReservationModule } from './domain/reservation/reservation.module';
 
 @Module({
   imports: [
@@ -52,6 +53,7 @@ import { PiecesUtiliseesModule } from './domain/pieces-utilisees/pieces-utilisee
     PlanificationMaintenanceModule,
     PieceModule,
     PiecesUtiliseesModule,
+    ReservationModule
   ],
 })
 export class AppModule {}
