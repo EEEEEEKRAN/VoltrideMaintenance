@@ -8,8 +8,11 @@ import RegisterPage from './pages/RegisterPage';
 import SuccessPage from './pages/SuccessPage';
 import LoginPage from './pages/LoginPage';
 import UserProfilePage from './pages/UserProfilePage';
-import Header from './components/Header';
 import ReservationPage from './pages/ReservationPage'; // Importez la page de réservation
+import Header from './components/Header'; 
+import Dashboard from './pages/Dashboard';
+import DashboardHome from './pages/DashboardHome';
+import SettingsPage from './pages/Settings';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -34,6 +37,13 @@ function App() {
             <Route path="/login" element={<LoginPage />} />
             <Route path="/profile/:id" element={<UserProfilePage />} />
             <Route path="/reservation" element={<ReservationPage />} /> {/* Ajoutez la route pour la réservation */}
+
+            {/* Routes du Dashboard */}
+            <Route path="/dashboard" element={<Dashboard />}>
+              <Route index element={<DashboardHome />} />
+              <Route path="settings" element={<SettingsPage />} />
+            </Route>
+
           </Routes>
         </Router>
       </ThemeProvider>

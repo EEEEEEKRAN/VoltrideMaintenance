@@ -13,7 +13,7 @@ import { ModeleScooter } from './domain/entities/modele-scooter.entity';
   imports: [
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: 'localhost',
+      host: 'bdd',
       port: 5432,
       username: 'voltride',
       password: 'voltride',
