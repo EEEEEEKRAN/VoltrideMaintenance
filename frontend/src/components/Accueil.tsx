@@ -1,6 +1,7 @@
 import React from 'react';
 import { Box, Typography, Paper, Button, TextField } from '@mui/material';
 import { keyframes } from '@mui/system';
+import { Link } from 'react-router-dom';
 
 
 const fadeIn = keyframes`
@@ -18,7 +19,6 @@ const Accueil: React.FC = () => {
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
       
-      {/* Section 1 - Hero */}
       <Box
         sx={{
           height: '100vh',
@@ -57,7 +57,6 @@ const Accueil: React.FC = () => {
         </Paper>
       </Box>
 
-      {/* Section 2 - À propos */}
       <Box
         sx={{
           py: 10,
@@ -66,11 +65,10 @@ const Accueil: React.FC = () => {
           alignItems: 'center',
           justifyContent: 'center',
           backgroundColor: '#f5f5f5',
-          flexDirection: { xs: 'column', md: 'row' }, // Colonne sur mobile, ligne sur desktop
-          gap: 4, // Espacement entre l'image et le texte
+          flexDirection: { xs: 'column', md: 'row' }, 
+          gap: 4, 
         }}
       >
-        {/* Image à gauche */}
         <Box sx={{ width: { xs: '100%', md: '50%' }, textAlign: 'justify' }}>
           <Typography variant="h3" sx={{ fontWeight: 'bold', color: '#1B5E20', textAlign: 'center' }}>
             À propos de nous
@@ -78,25 +76,25 @@ const Accueil: React.FC = () => {
           <Typography variant="body1" sx={{ mt: 2, p: 8 }}>
           VoltRide révolutionne la mobilité urbaine en offrant une solution de location de scooters 100% en ligne. Grâce à notre plateforme intuitive, louez un scooter en quelques clics, trouvez un véhicule disponible près de chez vous et profitez d’un transport rapide, économique et écologique. Plus besoin de paperasse ni d’attente, tout se fait via l’application pour une expérience fluide et sécurisée. 🚀🛵
           </Typography>
-          <Button>
-          Prêt à rouler ?
-          </Button>
+          <Link to="/reservation" style={{ textDecoration: 'none' }}>
+            <Button variant="contained" color="primary">
+              Prêt à rouler ?
+            </Button>
+          </Link>
         </Box>
         
-        {/* Texte à droite */}
         <Box
           component="img"
           src="../../images/scoot.jpeg"
           alt="À propos de nous"
           sx={{
-            width: { xs: '100%', md: '40%' }, // 100% sur mobile, 40% sur desktop
+            width: { xs: '100%', md: '40%' }, 
             borderRadius: 2,
             boxShadow: '0 4px 10px rgba(0,0,0,0.2)',
           }}
         />
       </Box>
 
-      {/* Section 3 - Nos Services */}
       <Box
         sx={{
           py: 10,
@@ -106,23 +104,20 @@ const Accueil: React.FC = () => {
           justifyContent: 'center',
           backgroundImage: 'linear-gradient(to right, #4CAF50, #81C784)',
           color: 'white',
-          flexDirection: { xs: 'column', md: 'row' }, // Stack en colonne sur mobile, en ligne sur desktop
-          gap: 4, // Espacement entre les éléments
-        }}
-      >
-        {/* Image à gauche */}
+          flexDirection: { xs: 'column', md: 'row' },
+          gap: 4,
+        }}>
+
         <Box
           component="img"
           src="../../images/scoot.jpeg"
           alt="Nos services"
           sx={{
-            width: { xs: '100%', md: '40%' }, // Image prend toute la largeur sur mobile, 40% sur desktop
+            width: { xs: '100%', md: '40%' },
             borderRadius: 2,
             boxShadow: '0 4px 10px rgba(0,0,0,0.2)',
-          }}
-        />
+          }}/>
 
-        {/* Texte à droite */}
         <Box sx={{ width: { xs: '100%', md: '50%' }, textAlign: 'center' }}>
           <Typography variant="h3" sx={{ fontWeight: 'bold' }}>
             Un problème ? Une solution !
@@ -132,7 +127,6 @@ const Accueil: React.FC = () => {
           </Typography>
           <Box sx={{ width: { xs: '100%', md: '50%' }, textAlign: 'left' }}>
             
-            {/* Formulaire */}
             <Box component="form" sx={{ mt: 3, display: 'flex', flexDirection: 'column', gap: 2 }}>
               <TextField 
                 label="Nom" 
@@ -167,7 +161,6 @@ const Accueil: React.FC = () => {
         </Box>
       </Box>
 
-      {/* Section 4 - Contact */}
       <Box
         sx={{
           py: 10,
@@ -182,7 +175,6 @@ const Accueil: React.FC = () => {
           Nous serions ravis d'échanger avec vous ! N'hésitez pas à nous contacter pour toute question.
         </Typography>
       </Box>
-
     </Box>
   );
 };
