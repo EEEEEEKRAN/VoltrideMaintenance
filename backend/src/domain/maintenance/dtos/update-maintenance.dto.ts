@@ -1,4 +1,10 @@
-import { IsString, IsOptional, IsNumber, Min } from 'class-validator';
+import {
+  IsString,
+  IsOptional,
+  IsNumber,
+  Min,
+  IsBoolean,
+} from 'class-validator';
 
 export class UpdateMaintenanceDto {
   @IsNumber()
@@ -9,4 +15,12 @@ export class UpdateMaintenanceDto {
   @IsString()
   @IsOptional()
   notesTechniques?: string;
+
+  @IsBoolean()
+  @IsOptional()
+  sousGarantie?: boolean;
+
+  @IsString()
+  @IsOptional()
+  conditionsGarantie?: string;
 }

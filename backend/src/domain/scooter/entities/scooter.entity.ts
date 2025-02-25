@@ -15,6 +15,12 @@ export enum ScooterStatut {
   HORS_SERVICE = 'HORS_SERVICE',
 }
 
+export enum GarantieType {
+  STANDARD = 'STANDARD',
+  ETENDUE = 'ETENDUE',
+  PREMIUM = 'PREMIUM',
+}
+
 interface IMaintenanceRequirements {
   kilometrageMax: number;
   cyclesChargeMax: number;
@@ -48,6 +54,19 @@ export class Scooter {
   @Column({ default: 0 })
   cyclesCharge: number;
 
+  @Column({ type: 'date' })
+  garantieDebut: Date;
+
+  @Column({ type: 'date' })
+  garantieFin: Date;
+
+  @Column({
+    type: 'enum',
+    enum: GarantieType,
+    default: GarantieType.STANDARD,
+  })
+  garantieType: GarantieType;
+
   @OneToMany('Maintenance', 'scooter')
   maintenances: Maintenance[];
 
@@ -57,16 +76,39 @@ export class Scooter {
     this.statut = ScooterStatut.DISPONIBLE;
     this.kilometrageTotal = 0;
     this.cyclesCharge = 0;
-    this.dateDerniereMaintenance = new Date();
+    this.garantieDebut = new Date();
+    this.garantieFin = new Date();
+    this.garantieFin.setFullYear(this.garantieFin.getFullYear() + 2); // Garantie standard de 2 ans
+    this.garantieType = GarantieType.STANDARD;
+  }
+
+  public estSousGarantie(): boolean {
+    const now = new Date();
+    return now >= this.garantieDebut && now <= this.garantieFin;
+  }
+
+  public prolongerGarantie(nombreMois: number): void {
+    if (nombreMois <= 0) {
+      throw new Error('Le nombre de mois doit être positif');
+    }
+    const dateFin = new Date(this.garantieFin);
+    dateFin.setMonth(dateFin.getMonth() + nombreMois);
+    this.garantieFin = dateFin;
+  }
+
+  public changerTypeGarantie(nouveauType: GarantieType): void {
+    this.garantieType = nouveauType;
   }
 
   public necessiteMaintenance(requirements: IMaintenanceRequirements): boolean {
-    const joursDepuisDerniereMaintenance = this.dateDerniereMaintenance
-      ? Math.floor(
-          (new Date().getTime() - this.dateDerniereMaintenance.getTime()) /
-            (1000 * 60 * 60 * 24),
-        )
-      : Infinity;
+    if (!this.dateDerniereMaintenance) {
+      return true;
+    }
+
+    const joursDepuisDerniereMaintenance = Math.floor(
+      (new Date().getTime() - this.dateDerniereMaintenance.getTime()) /
+        (1000 * 60 * 60 * 24),
+    );
 
     return (
       this.kilometrageTotal >= requirements.kilometrageMax ||
@@ -77,9 +119,6 @@ export class Scooter {
   }
 
   public mettreAJourKilometrage(nouveauKilometrage: number): void {
-    if (!Number.isInteger(nouveauKilometrage)) {
-      throw new Error('Le kilométrage doit être un nombre entier');
-    }
     if (nouveauKilometrage < this.kilometrageTotal) {
       throw new Error(
         'Le nouveau kilométrage ne peut pas être inférieur au kilométrage actuel',
@@ -89,30 +128,32 @@ export class Scooter {
   }
 
   public incrementerCyclesCharge(): void {
-    if (this.cyclesCharge >= Number.MAX_SAFE_INTEGER) {
-      throw new Error('Limite maximale de cycles de charge atteinte');
-    }
-    this.cyclesCharge++;
+    this.cyclesCharge += 1;
   }
 
   public changerStatut(nouveauStatut: ScooterStatut): void {
     if (this.statut === nouveauStatut) {
       throw new Error('Le scooter est déjà dans ce statut');
     }
+
     if (
-      this.statut === ScooterStatut.HORS_SERVICE &&
-      nouveauStatut !== ScooterStatut.EN_MAINTENANCE
+      nouveauStatut === ScooterStatut.DISPONIBLE &&
+      this.necessiteMaintenance({
+        kilometrageMax: 5000,
+        cyclesChargeMax: 300,
+        joursDepuisDerniereMaintenance: 90,
+      })
     ) {
       throw new Error(
-        "Un scooter hors service doit d'abord passer par la maintenance",
+        'Le scooter nécessite une maintenance avant de pouvoir être disponible',
       );
     }
+
     this.statut = nouveauStatut;
   }
 
   public effectuerMaintenance(): void {
     this.dateDerniereMaintenance = new Date();
-    this.statut = ScooterStatut.DISPONIBLE;
   }
 
   public estDisponible(): boolean {

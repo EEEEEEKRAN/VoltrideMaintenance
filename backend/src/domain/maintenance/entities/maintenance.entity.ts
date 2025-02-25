@@ -38,6 +38,12 @@ export class Maintenance {
   @Column('text', { nullable: true })
   notesTechniques: string | null;
 
+  @Column({ default: false })
+  sousGarantie: boolean;
+
+  @Column('text', { nullable: true })
+  conditionsGarantie: string | null;
+
   constructor(
     scooter: Scooter,
     type: MaintenanceType,
@@ -49,6 +55,10 @@ export class Maintenance {
     this.coutMainOeuvre = coutMainOeuvre;
     this.notesTechniques = notesTechniques || null;
     this.dateDebut = new Date();
+    this.sousGarantie = scooter.estSousGarantie();
+    this.conditionsGarantie = this.sousGarantie
+      ? `Intervention sous garantie ${scooter.garantieType} valable jusqu'au ${scooter.garantieFin.toLocaleDateString()}`
+      : null;
   }
 
   public terminerMaintenance(): void {
@@ -78,5 +88,13 @@ export class Maintenance {
       throw new Error('Le coût ne peut pas être négatif');
     }
     this.coutMainOeuvre = nouveauCout;
+  }
+
+  public mettreAJourGarantie(sousGarantie: boolean, conditions?: string): void {
+    if (this.estTerminee()) {
+      throw new Error('Impossible de modifier une maintenance terminée');
+    }
+    this.sousGarantie = sousGarantie;
+    this.conditionsGarantie = conditions || null;
   }
 }

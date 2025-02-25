@@ -1,4 +1,11 @@
-import { IsNumber, IsString, IsEnum, IsOptional, Min } from 'class-validator';
+import {
+  IsNumber,
+  IsString,
+  IsEnum,
+  IsOptional,
+  Min,
+  IsBoolean,
+} from 'class-validator';
 import { MaintenanceType } from '../entities/maintenance.entity';
 
 export class CreateMaintenanceDto {
@@ -15,4 +22,12 @@ export class CreateMaintenanceDto {
   @IsString()
   @IsOptional()
   notesTechniques?: string;
+
+  @IsBoolean()
+  @IsOptional()
+  sousGarantie?: boolean;
+
+  @IsString()
+  @IsOptional()
+  conditionsGarantie?: string;
 }
