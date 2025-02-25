@@ -19,6 +19,9 @@ import { ModeleScooterModule } from '../modele-scooter/modele-scooter.module';
       useClass: PlanificationMaintenanceRepository,
     },
   ],
-  exports: [GestionPlanificationMaintenanceUseCase],
+  exports: [
+    GestionPlanificationMaintenanceUseCase,
+    'IPlanificationMaintenanceRepository'
+  ],
 })
 export class PlanificationMaintenanceModule {}

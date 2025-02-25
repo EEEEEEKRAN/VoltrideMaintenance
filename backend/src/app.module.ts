@@ -19,9 +19,15 @@ import { TechnicienModule } from './domain/technicien/technicien.module';
 import { PlanificationMaintenanceModule } from './domain/planification-maintenance/planification-maintenance.module';
 import { PieceModule } from './domain/piece/piece.module';
 import { PiecesUtiliseesModule } from './domain/pieces-utilisees/pieces-utilisees.module';
+import { NotificationModule } from './infrastructure/services/notification/notification.module';
+import { ConfigModule } from '@nestjs/config';
+import { MaintenanceAlertModule } from './domain/maintenance/maintenance-alert/maintenance-alert.module';
 
 @Module({
   imports: [
+    ConfigModule.forRoot({
+      isGlobal: true,
+    }),
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: 'localhost',
@@ -52,6 +58,8 @@ import { PiecesUtiliseesModule } from './domain/pieces-utilisees/pieces-utilisee
     PlanificationMaintenanceModule,
     PieceModule,
     PiecesUtiliseesModule,
+    NotificationModule,
+    MaintenanceAlertModule,
   ],
 })
 export class AppModule {}
