@@ -1,6 +1,6 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { IUserRepository } from '../../domain/repositories/iuser.repository';
-import { Utilisateur } from '../../domain/entities/user.entity';
+import { IUserRepository } from '../../domain/user/repositories/iuser.repository';
+import { Utilisateur } from '../../domain/user/entities/user.entity';
 
 
 @Injectable()
@@ -12,4 +12,5 @@ export class CreateUserUseCase {
   async execute(user: Utilisateur): Promise<Utilisateur> {
     return this.userRepository.save(user);
   }
+  
 }

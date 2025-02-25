@@ -10,7 +10,7 @@ import { DeleteUserUseCase } from '../application/uses-cases/delete-user.use-cas
 import { LoginUserUseCase } from '../application/uses-cases/login-user.use-case';
 import { UsersService } from '../users/users.service';
 import { UserRepository } from '../infrastructure/repositories/user.repository';
-import { Utilisateur } from '../domain/entities/user.entity';
+import { Utilisateur } from '../domain/user/entities/user.entity';
 import { JwtModule } from '@nestjs/jwt';
 
 @Module({

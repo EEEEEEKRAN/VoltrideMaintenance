@@ -17,7 +17,7 @@ const FullCalendarComponent: React.FC<FullCalendarComponentProps> = ({ onDateCli
       plugins={[dayGridPlugin, interactionPlugin]}
       initialView="dayGridMonth"
       dateClick={handleDateClick}
-      events={[]} // Vous pouvez ajouter des événements ici si nécessaire
+      events={[]}
     />
   );
 };
