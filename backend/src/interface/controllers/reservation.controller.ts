@@ -4,13 +4,16 @@ import { CreateReservationUseCase } from '../../application/uses-cases/create-re
 import { CreateReservationDTO } from '../dto/create-reservation.dto';
 import { Reservation } from '../../domain/reservation/entities/reservation.entity';
 
-
 @Controller('reservations')
 export class ReservationController {
-  constructor(private readonly createReservationUseCase: CreateReservationUseCase) {}
+  constructor(
+    private readonly createReservationUseCase: CreateReservationUseCase,
+  ) {}
 
   @Post()
-  async create(@Body() createReservationDTO: CreateReservationDTO): Promise<Reservation> {
+  async create(
+    @Body() createReservationDTO: CreateReservationDTO,
+  ): Promise<Reservation> {
     return this.createReservationUseCase.execute(createReservationDTO);
   }
 }

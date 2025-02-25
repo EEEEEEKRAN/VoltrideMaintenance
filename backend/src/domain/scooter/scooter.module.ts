@@ -1,9 +1,9 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Scooter } from './entities/scooter.entity';
-import { ScooterController } from '../../presentation/controllers/scooter.controller';
-import { GestionScooterUseCase } from './use-cases/gestion-scooter.use-case';
 import { ScooterRepository } from '../../infrastructure/database/typeorm/repositories/scooter.repository';
+import { GestionScooterUseCase } from './use-cases/gestion-scooter.use-case';
+import { ScooterController } from '../../interface/controllers/scooter.controller';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Scooter])],

@@ -7,7 +7,7 @@ import { ModeleScooter } from './domain/modele-scooter/entities/modele-scooter.e
 import { Maintenance } from './domain/maintenance/entities/maintenance.entity';
 import { Technicien } from './domain/technicien/entities/technicien.entity';
 import { PlanificationMaintenance } from './domain/planification-maintenance/entities/planification-maintenance.entity';
-import { Piece } from './domain/piece/entities/piece.entity';
+import { Piece } from './domain/piece/entities/piece.entities';
 import { PiecesUtilisees } from './domain/pieces-utilisees/entities/pieces-utilisees.entity';
 import { ScooterModule } from './domain/scooter/scooter.module';
 import { ModeleScooterModule } from './domain/modele-scooter/modele-scooter.module';

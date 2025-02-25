@@ -8,7 +8,9 @@ export class IncidentController {
   constructor(private readonly createIncidentUseCase: CreateIncidentUseCase) {}
 
   @Post()
-  async create(@Body() createIncidentDTO: CreateIncidentDTO): Promise<Incident> {
+  async create(
+    @Body() createIncidentDTO: CreateIncidentDTO,
+  ): Promise<Incident> {
     return this.createIncidentUseCase.execute(createIncidentDTO);
   }
 }

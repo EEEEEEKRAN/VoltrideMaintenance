@@ -1,4 +1,12 @@
-import { Controller, Post, Body, Get, Param, Put, Delete  } from '@nestjs/common';
+import {
+  Controller,
+  Post,
+  Body,
+  Get,
+  Param,
+  Put,
+  Delete,
+} from '@nestjs/common';
 import { CreateUserUseCase } from '../../application/uses-cases/create-user.use-case';
 import { GetUserUseCase } from '../../application/uses-cases/get-user.use-case';
 import { GetAllUsersUseCase } from '../../application/uses-cases/get-all-users.use-case';
@@ -41,5 +49,4 @@ export class UsersController {
   async remove(@Param('id') id: string) {
     return this.deleteUserUseCase.execute(+id);
   }
-  
 }

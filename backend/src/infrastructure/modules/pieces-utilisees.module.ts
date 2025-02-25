@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { PiecesUtilisees } from '../../domain/pieces-utilisees/entities/pieces-utilisees.entity';
-import { PiecesUtiliseesController } from '../controllers/pieces-utilisees.controller';
+import { PiecesUtiliseesController } from '../../interface/controllers/pieces-utilisees.controller';
 import { GestionPiecesUtiliseesUseCase } from '../../domain/pieces-utilisees/use-cases/gestion-pieces-utilisees.use-case';
 import { PiecesUtiliseesRepository } from '../database/typeorm/repositories/pieces-utilisees.repository';
 import { MaintenanceModule } from './maintenance.module';

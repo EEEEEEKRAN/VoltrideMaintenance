@@ -1,17 +1,17 @@
 import { Entity, Column, ManyToOne, JoinColumn } from 'typeorm';
 import { Maintenance } from '../../maintenance/entities/maintenance.entity';
-import { Piece } from '../../piece/entities/piece.entity';
+import { Piece } from '../../piece/entities/piece.entities';
 
 @Entity()
 export class PiecesUtilisees {
-  @ManyToOne(() => Maintenance, { primary: true })
+  @ManyToOne(() => Maintenance)
   @JoinColumn({ name: 'maintenance_id' })
   maintenance: Maintenance;
 
   @Column({ name: 'maintenance_id', primary: true })
   maintenanceId: number;
 
-  @ManyToOne(() => Piece, { primary: true })
+  @ManyToOne(() => Piece)
   @JoinColumn({ name: 'piece_id' })
   piece: Piece;
 
@@ -56,4 +56,4 @@ export class PiecesUtilisees {
     }
     this.quantiteUtilisee -= quantiteARetirer;
   }
-} 
+}

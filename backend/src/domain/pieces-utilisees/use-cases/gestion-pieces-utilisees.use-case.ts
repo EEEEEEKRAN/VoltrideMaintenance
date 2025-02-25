@@ -41,8 +41,8 @@ export class GestionPiecesUtiliseesUseCase {
     }
 
     const nouvellePiecesUtilisees = new PiecesUtilisees(
-      maintenance,
-      piece,
+      maintenance.id,
+      piece.id,
       createPiecesUtiliseesDto.quantiteUtilisee,
     );
 
