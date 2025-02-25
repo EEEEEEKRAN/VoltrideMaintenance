@@ -28,7 +28,7 @@ function App() {
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <Router>
-          {/* <Header />  */}
+          <Header />
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/register" element={<RegisterPage />} />
@@ -37,8 +37,10 @@ function App() {
             <Route path="/profile/:id" element={<UserProfilePage />} />
 
             {/* Routes du Dashboard */}
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="settings" element={<SettingsPage />} />
+            <Route path="/dashboard" element={<Dashboard />}>
+              <Route index element={<DashboardHome />} />
+              <Route path="settings" element={<SettingsPage />} />
+            </Route>
 
           </Routes>
         </Router>

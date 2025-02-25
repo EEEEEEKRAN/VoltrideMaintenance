@@ -1,5 +1,4 @@
-import { useQuery } from '@tanstack/react-query';
-import { Card, CardContent, Typography, Grid, CircularProgress } from '@mui/material';
+import { Card, CardContent, Typography, Grid } from '@mui/material';
 import DirectionsBikeIcon from '@mui/icons-material/DirectionsBike';
 import PeopleIcon from '@mui/icons-material/People';
 import BuildIcon from '@mui/icons-material/Build';
