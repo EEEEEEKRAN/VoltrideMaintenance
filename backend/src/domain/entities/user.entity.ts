@@ -1,4 +1,5 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn,  OneToMany } from 'typeorm';
+import { Reservation } from './reservation.entity';
 
 @Entity()
 export class Utilisateur {
@@ -19,6 +20,9 @@ export class Utilisateur {
 
   @Column()
   password: string;
+
+  @OneToMany(() => Reservation, reservation => reservation.utilisateur)
+  reservations: Reservation[];
 
   constructor(nom: string, email: string, telephone: string, numero_permis: string, password: string, id?: number) {
     this.id = id;

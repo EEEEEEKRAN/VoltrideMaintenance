@@ -8,7 +8,8 @@ import RegisterPage from './pages/RegisterPage';
 import SuccessPage from './pages/SuccessPage';
 import LoginPage from './pages/LoginPage';
 import UserProfilePage from './pages/UserProfilePage';
-import Header from './components/Header'; 
+import Header from './components/Header';
+import ReservationPage from './pages/ReservationPage'; // Importez la page de réservation
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -25,13 +26,14 @@ function App() {
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <Router>
-          <Header /> 
+          <Header />
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/success" element={<SuccessPage />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/profile/:id" element={<UserProfilePage />} />
+            <Route path="/reservation" element={<ReservationPage />} /> {/* Ajoutez la route pour la réservation */}
           </Routes>
         </Router>
       </ThemeProvider>

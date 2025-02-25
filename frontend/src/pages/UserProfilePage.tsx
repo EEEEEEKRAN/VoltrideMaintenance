@@ -5,10 +5,13 @@ import { UserData } from '../models/UserData';
 import { UpdateUserData } from '../models/UpdateUserData';
 import { TextField, Button, Box, Grid, Typography, Container, Paper } from '@mui/material';
 import { Person, Email, Phone, Badge } from '@mui/icons-material';
+import { getUserIdFromLocalStorage } from '../services/authService'; // Importez la fonction
 
 const UserProfilePage: React.FC = () => {
   const navigate = useNavigate();
   const { id } = useParams<{ id: string }>();
+
+  const loggedInId = getUserIdFromLocalStorage();
 
   // Fonction de vérification d'accès
   const hasAccessToProfile = (requestedId: string | undefined, loggedInId: number | null): boolean => {
@@ -25,13 +28,6 @@ const UserProfilePage: React.FC = () => {
       navigate('/login');
     }
   }, [id, navigate]);
-
-  // Récupérez l'ID de l'utilisateur connecté
-  const loggedInIdString = localStorage.getItem('id');
-  const loggedInId = loggedInIdString ? parseInt(loggedInIdString, 10) : null;
-
-  console.log("Logged in user ID from localStorage:", loggedInId); // Log pour vérifier l'ID de l'utilisateur connecté
-  console.log("Requested profile ID:", id); // Log pour vérifier l'ID demandé
 
   // Vérifiez l'accès au profil
   useEffect(() => {
@@ -76,7 +72,7 @@ const UserProfilePage: React.FC = () => {
   const handleUpdate = async () => {
     if (formData) {
       try {
-        await updateUserProfile(loggedInId!, formData);
+        await updateUserProfile(loggedInId!, formData); // Utilisez loggedInId comme number
         setIsEditing(false);
       } catch (error) {
         console.error('Erreur lors de la mise à jour du profil utilisateur:', error);

@@ -46,3 +46,8 @@ export const handleLogout = () => {
   localStorage.removeItem('id');
   console.log("User logged out and tokens removed from localStorage.");
 };
+
+export const getUserIdFromLocalStorage = (): number | null => {
+  const userId = localStorage.getItem('id');
+  return userId ? parseInt(userId, 10) : null;
+};
