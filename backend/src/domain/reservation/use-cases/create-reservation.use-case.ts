@@ -1,9 +1,9 @@
 import { Injectable, BadRequestException, InternalServerErrorException, Logger } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { Reservation } from '../../domain/reservation/entities/reservation.entity';
-import { CreateReservationDTO } from '../../interface/dto/create-reservation.dto';
-import { Utilisateur } from '../../domain/user/entities/user.entity';
+import { Reservation } from '../../reservation/entities/reservation.entity';
+import { CreateReservationDTO } from '../../user/dtos/create-reservation.dto';
+import { Utilisateur } from '../../user/entities/user.entity';
 
 @Injectable()
 export class CreateReservationUseCase {

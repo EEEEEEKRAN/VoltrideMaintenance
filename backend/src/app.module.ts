@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { UsersModule } from './users/users.module';
+import { UsersModule } from './domain/user/users.module';
 import { Utilisateur } from './domain/user/entities/user.entity';
 import { Scooter } from './domain/scooter/entities/scooter.entity';
 import { ModeleScooter } from './domain/modele-scooter/entities/modele-scooter.entity';

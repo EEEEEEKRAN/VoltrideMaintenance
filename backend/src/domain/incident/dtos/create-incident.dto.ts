@@ -1,10 +1,6 @@
-// src/interface/dto/create-incident.dto.ts
-import { IsDate, IsInt, IsString } from 'class-validator';
+import { IsString, IsDate } from 'class-validator';
 
 export class CreateIncidentDTO {
-  @IsInt()
-  reservationId: number;
-
   @IsString()
   description: string;
 
@@ -13,4 +9,7 @@ export class CreateIncidentDTO {
 
   @IsString()
   gravite: string;
+
+  @IsString()
+  reservationId: number;
 }

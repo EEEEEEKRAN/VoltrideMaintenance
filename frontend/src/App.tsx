@@ -9,6 +9,7 @@ import SuccessPage from './pages/SuccessPage';
 import LoginPage from './pages/LoginPage';
 import UserProfilePage from './pages/UserProfilePage';
 import ReservationPage from './pages/ReservationPage'; // Importez la page de réservation
+import IncidentPage from './pages/IncidentPage';
 import Header from './components/Header'; 
 import Dashboard from './pages/Dashboard';
 import DashboardHome from './pages/DashboardHome';
@@ -37,6 +38,7 @@ function App() {
             <Route path="/login" element={<LoginPage />} />
             <Route path="/profile/:id" element={<UserProfilePage />} />
             <Route path="/reservation" element={<ReservationPage />} /> {/* Ajoutez la route pour la réservation */}
+            <Route path="/incident" element={<IncidentPage />} />
 
             {/* Routes du Dashboard */}
             <Route path="/dashboard" element={<Dashboard />}>

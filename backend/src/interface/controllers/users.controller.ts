@@ -7,11 +7,11 @@ import {
   Put,
   Delete,
 } from '@nestjs/common';
-import { CreateUserUseCase } from '../../application/uses-cases/create-user.use-case';
-import { GetUserUseCase } from '../../application/uses-cases/get-user.use-case';
-import { GetAllUsersUseCase } from '../../application/uses-cases/get-all-users.use-case';
-import { UpdateUserUseCase } from '../../application/uses-cases/update-user.use-case';
-import { DeleteUserUseCase } from '../../application/uses-cases/delete-user.use-case';
+import { CreateUserUseCase } from '../../domain/user/use-cases/create-user.use-case';
+import { GetUserUseCase } from '../../domain/user/use-cases/get-user.use-case';
+import { GetAllUsersUseCase } from '../../domain/user/use-cases/get-all-users.use-case';
+import { UpdateUserUseCase } from '../../domain/user/use-cases/update-user.use-case';
+import { DeleteUserUseCase } from '../../domain/user/use-cases/delete-user.use-case';
 import { Utilisateur } from '../../domain/user/entities/user.entity';
 
 @Controller('users')

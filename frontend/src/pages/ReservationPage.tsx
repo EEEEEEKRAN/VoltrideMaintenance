@@ -21,13 +21,7 @@ const ReservationPage: React.FC = () => {
       return;
     }
 
-    const scooterInfo = {
-      modele_id: 1, // Exemple de modele_id, à remplacer par la valeur réelle
-      numero_serie: '12345', // Exemple de numero_serie, à remplacer par la valeur réelle
-      date_derniere_maintenance: new Date(), // Exemple de date, à remplacer par la valeur réelle
-      kilometrage_total: 1000, // Exemple de kilometrage, à remplacer par la valeur réelle
-      cycles_charge: 50, // Exemple de cycles de charge, à remplacer par la valeur réelle
-    };
+  
 
     const reservationData = {
       utilisateurId: parseInt(userId, 10),
@@ -36,7 +30,6 @@ const ReservationPage: React.FC = () => {
       date_fin: selectedDate.toISOString(),
       lieu: 'Paris',
       statut: 'pending',
-      ...scooterInfo,
     };
 
     console.log('Reservation Data:', reservationData);

@@ -1,7 +1,7 @@
 // src/interface/controllers/reservation.controller.ts
 import { Controller, Post, Body } from '@nestjs/common';
-import { CreateReservationUseCase } from '../../application/uses-cases/create-reservation.use-case';
-import { CreateReservationDTO } from '../dto/create-reservation.dto';
+import { CreateReservationUseCase } from '../../domain/reservation/use-cases/create-reservation.use-case';
+import { CreateReservationDTO } from '../../domain/user/dtos/create-reservation.dto';
 import { Reservation } from '../../domain/reservation/entities/reservation.entity';
 
 @Controller('reservations')
@@ -16,4 +16,5 @@ export class ReservationController {
   ): Promise<Reservation> {
     return this.createReservationUseCase.execute(createReservationDTO);
   }
+  
 }

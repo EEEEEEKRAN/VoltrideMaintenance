@@ -2,7 +2,7 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { IncidentController } from '../../interface/controllers/incident.controller';
-import { CreateIncidentUseCase } from '../../application/uses-cases/create-incident.use-case';
+import { CreateIncidentUseCase } from '../incident/use-cases/create-incident.use-case';
 import { Incident } from './entities/incident.entity';
 
 @Module({
