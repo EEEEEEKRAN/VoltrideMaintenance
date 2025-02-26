@@ -15,6 +15,9 @@ const Sidebar = ({ mobileOpen, handleDrawerToggle }) => {
         {[
           { text: 'Accueil', icon: <HomeIcon />, path: '/' },
           { text: 'Tableau de Bord', icon: <DashboardIcon />, path: '/dashboard' },
+          { text: 'Utilisateurs', icon: <DashboardIcon />, path: '/dashboard' },
+          { text: 'Réservations', icon: <DashboardIcon />, path: '/dashboard' },
+          { text: 'Incidents', icon: <DashboardIcon />, path: '/dashboard' },
           { text: 'Paramètres', icon: <SettingsIcon />, path: '/dashboard/settings' },
         ].map(({ text, icon, path }) => (
           <ListItem button key={text} component={Link} to={path}>

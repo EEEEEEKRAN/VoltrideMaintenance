@@ -123,41 +123,8 @@ const Accueil: React.FC = () => {
             Un problème ? Une solution !
           </Typography>
           <Typography variant="body1" sx={{ mt: 2 }}>
-            N'hésitez pas à reporter votre problème via ce formualire.
+            N'hésitez pas à reporter votre problème via votre profile.
           </Typography>
-          <Box sx={{ width: { xs: '100%', md: '50%' }, textAlign: 'left' }}>
-            
-            <Box component="form" sx={{ mt: 3, display: 'flex', flexDirection: 'column', gap: 2 }}>
-              <TextField 
-                label="Nom" 
-                variant="outlined" 
-                fullWidth 
-                sx={{ backgroundColor: 'white', borderRadius: 1 }}
-              />
-              <TextField 
-                label="Email" 
-                type="email" 
-                variant="outlined" 
-                fullWidth 
-                sx={{ backgroundColor: 'white', borderRadius: 1 }}
-              />
-              <TextField 
-                label="Message" 
-                variant="outlined" 
-                multiline 
-                rows={4} 
-                fullWidth 
-                sx={{ backgroundColor: 'white', borderRadius: 1 }}
-              />
-              <Button 
-                type="submit" 
-                variant="contained" 
-                sx={{ backgroundColor: 'white', color: '#4CAF50' }}
-              >
-                Envoyer
-              </Button>
-            </Box>
-          </Box>
         </Box>
       </Box>
 
